@@ -8,12 +8,18 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 dataset = open("spam.txt","r")
 spamlib = dataset.read().split(",")
-print(spamlib)
+## print(spamlib)
 dataset.close()
 
-msg = input('Input Msg : ')
+msg = "selamat anda mendapatkan pinjaman dengan jumlah yang wow dan wow"
 tokens = word_tokenize(msg.lower())
 print(tokens)
+
+def vectorize(tokens):
+    vector=[]
+    for w in spamlib:
+        vector.append(tokens.count(w))
+    return vector
 
 stopwords = stopwords.words('indonesian')
 msg_sw = []
@@ -27,3 +33,4 @@ for word in msg_sw:
     if word in spamlib:
         spam_indicated.append(word)
 print(spam_indicated)
+print(vectorize(msg_sw))
