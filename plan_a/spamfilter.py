@@ -44,7 +44,8 @@ vector = vectorize(msg_sw)
 print(vector[:5])
 
 # result - kesimpulan
-res = round(len(spam_indicated)/len(notSpam)*100)
+if len(spam_indicated) == len(notSpam): res = 50
+else: res = round(len(spam_indicated)/len(notSpam)*100)
 
 if res > 75: kesimpulan = "SPAM"
 else: kesimpulan = "BUKAN SPAM"
