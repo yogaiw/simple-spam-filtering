@@ -4,7 +4,6 @@
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import CountVectorizer
 
 # memanggil dataset
 dataset = open("spam.txt","r")
@@ -34,15 +33,18 @@ print(msg_sw)
 
 # menghitung kata yang mengandung spam, dan vektorisasi
 spam_indicated = []
+notSpam = []
 for word in msg_sw:
     if word in spamlib:
         spam_indicated.append(word)
+    else : notSpam.append(word)
 print(spam_indicated)
+print(notSpam)
 vector = vectorize(msg_sw)
 print(vector)
 
 def result(v):
-    spam_contain_count = sum(v)*20
-    return spam_contain_count
+    res = round(len(spam_indicated)/len(notSpam)*100)
+    return res
 
 print(str(result(vector))+"% Spam")
