@@ -1,5 +1,5 @@
 # 18102180 YOGA INDRA WIJAYA IF-06-MM1
-# SPAM THRESHOLD = 75%
+# THRESHOLD = 75%
 
 import nltk
 from nltk.tokenize import word_tokenize
@@ -23,7 +23,7 @@ def vectorize(tokens):
         vector.append(tokens.count(w))
     return vector
 
-# membersihkan stop words dari input
+# pre-process - membersihkan stop words dari input
 stopwords = stopwords.words('indonesian')
 msg_sw = []
 for word in tokens:
@@ -31,7 +31,7 @@ for word in tokens:
         msg_sw.append(word)
 print(msg_sw)
 
-# menghitung kata yang mengandung spam, dan vektorisasi
+# process - menghitung kata yang mengandung spam, dan vektorisasi
 spam_indicated = []
 notSpam = []
 for word in msg_sw:
@@ -41,10 +41,13 @@ for word in msg_sw:
 print(spam_indicated)
 print(notSpam)
 vector = vectorize(msg_sw)
-print(vector)
+print(vector[:5])
 
-def result(v):
-    res = round(len(spam_indicated)/len(notSpam)*100)
-    return res
+# result - kesimpulan
+res = round(len(spam_indicated)/len(notSpam)*100)
 
-print(str(result(vector))+"% Spam")
+if res > 75: kesimpulan = "SPAM"
+else: kesimpulan = "BUKAN SPAM"
+
+print(str(res)+"% spam")
+print("dengan threshold 75% maka disimpulan pesan ini termasuk " + kesimpulan)
