@@ -13,7 +13,7 @@ spamlib = dataset.read().split(",")
 dataset.close()
 
 # input teks untuk deteksi spam
-msg = "Selamat anda mendapatkan kesempatan pinjaman dengan jumlah yang wow, jangan sia siakan kesempatan ini, anda dapat melakukan kredit motor secara cepat"
+msg = input('masukkan pesan : ')
 tokens = word_tokenize(msg.lower())
 print(tokens)
 
@@ -45,4 +45,4 @@ def result(v):
     spam_contain_count = sum(v)*20
     return spam_contain_count
 
-print(str(result(vector))+"%")
+print(str(result(vector))+"% Spam")
