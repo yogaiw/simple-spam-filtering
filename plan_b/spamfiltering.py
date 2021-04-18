@@ -1,5 +1,4 @@
 # 18102180 YOGA INDRA WIJAYA S1IF-06-MM1
-# THRESHOLD 80%
 
 import pandas as pd
 import string

@@ -7,7 +7,7 @@ from nltk.corpus import stopwords
 
 # memanggil dataset
 dataset = open("spam.txt","r")
-spamlib = dataset.read().split(",")
+spamlib = dataset.read().split("\n")
 ## print(spamlib)
 dataset.close()
 
