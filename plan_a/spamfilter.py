@@ -2,6 +2,7 @@
 # THRESHOLD = 75%
 
 import nltk
+import string
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
@@ -13,7 +14,8 @@ dataset.close()
 
 # input teks untuk deteksi spam
 msg = input('masukkan pesan : ')
-tokens = word_tokenize(msg.lower())
+remove_punct = "".join([word.lower() for word in msg if word not in string.punctuation])
+tokens = word_tokenize(remove_punct.lower())
 print(tokens)
 
 # fungsi untuk vektor
@@ -47,7 +49,9 @@ print(vector[:5])
 if len(spam_indicated) == len(notSpam): res = 50
 else: res = round(len(spam_indicated)/len(notSpam)*100)
 
-if res > 75: kesimpulan = "SPAM"
+if res > 75:
+    kesimpulan = "SPAM"
+    if res > 100: res = 100
 else: kesimpulan = "BUKAN SPAM"
 
 print(str(res)+"% spam")
